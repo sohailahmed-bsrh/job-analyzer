@@ -1,0 +1,19 @@
+{
+  "name": "resume-cover-letter-maker",
+  "private": true,
+  "workspaces": ["frontend", "server"],
+  "scripts": {
+    "dev": "concurrently \"npm run dev -w frontend\" \"npm run dev -w server\"",
+    "dev:frontend": "npm run dev -w frontend",
+    "dev:server": "npm run dev -w server",
+    "build": "npm run build -w frontend",
+    "lint": "npm run lint -w frontend && npm run lint -w server",
+    "test": "npm run test -w server",
+    "db:generate": "npm run db:generate -w server",
+    "db:migrate": "npm run db:migrate -w server",
+    "db:studio": "npm run db:studio -w server"
+  },
+  "devDependencies": {
+    "concurrently": "^9.2.0"
+  }
+}

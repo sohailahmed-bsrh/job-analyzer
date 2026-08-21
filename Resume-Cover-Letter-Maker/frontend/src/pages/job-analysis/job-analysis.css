@@ -1,0 +1,146 @@
+.job-analysis-page .narrow {
+  max-width: 720px;
+}
+
+.job-analysis-page .page-header {
+  margin-bottom: 40px;
+}
+
+.header-icon {
+  width: 64px;
+  height: 64px;
+  background: var(--surface);
+  border: 1px solid var(--border);
+  border-radius: var(--radius-pill);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: var(--accent);
+  box-shadow: var(--shadow-sm);
+  margin-bottom: 24px;
+}
+
+.mx-auto {
+  margin-left: auto;
+  margin-right: auto;
+}
+
+.mt-4 {
+  margin-top: 16px;
+}
+
+.mb-4 {
+  margin-bottom: 16px;
+}
+
+.max-w-md {
+  max-width: 540px;
+}
+
+.source-tabs {
+  display: flex;
+  background: var(--surface-soft);
+  padding: 6px;
+  border-radius: var(--radius-pill);
+  margin-bottom: 24px;
+  border: 1px solid var(--border);
+}
+
+.tab-btn {
+  flex: 1;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
+  padding: 12px;
+  border-radius: var(--radius-pill);
+  border: none;
+  background: transparent;
+  color: var(--text-muted);
+  font-weight: 600;
+  font-size: 0.95rem;
+  cursor: pointer;
+  transition: all var(--transition-fast);
+}
+
+.tab-btn:hover:not(.active) {
+  color: var(--ink);
+  background: rgba(0,0,0,0.03);
+}
+
+.tab-btn.active {
+  background: var(--surface);
+  color: var(--accent);
+  box-shadow: var(--shadow-sm);
+}
+
+.job-textarea textarea {
+  min-height: 280px;
+}
+
+.analyze-btn {
+  margin-top: 16px;
+  width: 100%;
+}
+
+.segmented-control {
+  display: flex;
+  align-items: center;
+  background: var(--surface);
+  border: 1px solid var(--border-strong);
+  border-radius: var(--radius-pill);
+  padding: 4px;
+  width: max-content;
+  box-shadow: var(--shadow-sm);
+}
+.segment {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  padding: 10px 24px;
+  border: none;
+  background: transparent;
+  font-weight: 600;
+  color: var(--text-muted);
+  border-radius: var(--radius-pill);
+  cursor: pointer;
+  transition: all var(--transition-base);
+}
+.segment:hover {
+  color: var(--text-strong);
+  background: var(--surface-soft);
+}
+.segment.active {
+  background: var(--accent);
+  color: #fff;
+  box-shadow: var(--shadow-sm);
+}
+.segment-divider {
+  font-size: 0.75rem;
+  font-weight: 800;
+  color: var(--text-subtle);
+  margin: 0 12px;
+}
+
+.job-textarea:focus {
+  border-color: var(--accent) !important;
+  box-shadow: var(--ring-focus) !important;
+}
+
+.analyze-btn-primary {
+  transition: transform var(--transition-base), box-shadow var(--transition-base), background var(--transition-base);
+}
+.analyze-btn-primary:hover {
+  transform: translateY(-2px);
+  box-shadow: var(--shadow-lg), var(--shadow-glow);
+}
+.analysis-loading-card {
+  border: 2px dashed var(--border-focus);
+  background: var(--surface-soft);
+  animation: pulse-border 2s infinite ease-in-out;
+}
+@keyframes pulse-border {
+  0% { border-color: var(--border-focus); }
+  50% { border-color: var(--border); }
+  100% { border-color: var(--border-focus); }
+}

@@ -1,0 +1,8 @@
+@keyframes spin { to { transform: rotate(360deg); } }
+@keyframes rise { from { opacity: 0; transform: translateY(12px); } to { opacity: 1; transform: translateY(0); } }
+@keyframes softpulse { 0%,100% { opacity: .7; } 50% { opacity: 1; } }
+.animate-rise { animation: rise .55s ease both; }
+.delay-1 { animation-delay: .07s; }
+.delay-2 { animation-delay: .14s; }
+.delay-3 { animation-delay: .21s; }
+.soft-pulse { animation: softpulse 1.8s ease-in-out infinite; }

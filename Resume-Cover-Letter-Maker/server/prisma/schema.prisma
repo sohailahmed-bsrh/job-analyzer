@@ -1,0 +1,173 @@
+generator client {
+  provider = "prisma-client-js"
+  output   = "../src/generated/prisma"
+}
+
+datasource db {
+  provider = "sqlite"
+  url      = env("DATABASE_URL")
+}
+
+model CandidateProfile {
+  id          String                @id @default(cuid())
+  workspaceId String                @unique
+  name        String
+  headline    String?
+  location    String?
+  summary     String?
+  email       String?
+  phone       String?
+  linkedin    String?
+  github      String?
+  portfolio   String?
+  photoUrl    String?
+  rawText     String?
+  education   Education[]
+  experience  Experience[]
+  skills      Skill[]
+  sources     CandidateSource[]
+  suggestions CandidateSuggestion[]
+  createdAt   DateTime              @default(now())
+  updatedAt   DateTime              @updatedAt
+}
+
+model CandidateSource {
+  id          String           @id @default(cuid())
+  profileId   String
+  fileName    String
+  mimeType    String
+  storageKey  String
+  extractedAt DateTime?
+  createdAt   DateTime         @default(now())
+  profile     CandidateProfile @relation(fields: [profileId], references: [id], onDelete: Cascade)
+
+  @@index([profileId])
+}
+
+model Education {
+  id          String           @id @default(cuid())
+  profileId   String
+  institution String
+  degree      String
+  field       String?
+  startDate   String?
+  endDate     String?
+  details     String?
+  profile     CandidateProfile @relation(fields: [profileId], references: [id], onDelete: Cascade)
+
+  @@index([profileId])
+}
+
+model Experience {
+  id          String           @id @default(cuid())
+  profileId   String
+  company     String
+  title       String
+  startDate   String?
+  endDate     String?
+  description String?
+  profile     CandidateProfile @relation(fields: [profileId], references: [id], onDelete: Cascade)
+
+  @@index([profileId])
+}
+
+model Skill {
+  id        String           @id @default(cuid())
+  profileId String
+  name      String
+  level     String?
+  profile   CandidateProfile @relation(fields: [profileId], references: [id], onDelete: Cascade)
+
+  @@unique([profileId, name])
+}
+
+model Job {
+  id                    String                @id @default(cuid())
+  workspaceId           String
+  title                 String?
+  sourceType            String
+  sourceContent         String
+  normalizedDescription String?
+  sourceUrl             String?
+  sourceStatus          String?
+  analysisStatus        String?
+  analysis              JobAnalysis?
+  matchResults          MatchResult[]
+  suggestions           CandidateSuggestion[]
+  documents             GeneratedDocument[]
+  createdAt             DateTime              @default(now())
+  updatedAt             DateTime              @updatedAt
+
+  @@index([workspaceId, createdAt])
+}
+
+model JobAnalysis {
+  id                    String   @id @default(cuid())
+  jobId                 String   @unique
+  companyName           String?
+  roleTitle             String?
+  summary               String?
+  responsibilities      String
+  requiredSkills        String
+  preferredSkills       String
+  experienceRequirement String?
+  educationRequirement  String?
+  atsKeywords           String
+  confidence            Float?
+  rawModelJson          String?
+  job                   Job      @relation(fields: [jobId], references: [id], onDelete: Cascade)
+  createdAt             DateTime @default(now())
+  updatedAt             DateTime @updatedAt
+}
+
+model MatchResult {
+  id            String   @id @default(cuid())
+  jobId         String
+  score         Float?
+  matchedSkills String
+  missingSkills String
+  evidenceGaps  String
+  explanation   String?
+  createdAt     DateTime @default(now())
+  job           Job      @relation(fields: [jobId], references: [id], onDelete: Cascade)
+
+  @@index([jobId, createdAt])
+}
+
+model CandidateSuggestion {
+  id               String           @id @default(cuid())
+  profileId        String
+  jobId            String
+  title            String
+  reason           String
+  proposedEvidence String?
+  targetSection    String
+  status           String @default("PENDING")
+  profile          CandidateProfile @relation(fields: [profileId], references: [id], onDelete: Cascade)
+  job              Job              @relation(fields: [jobId], references: [id], onDelete: Cascade)
+  createdAt        DateTime         @default(now())
+  updatedAt        DateTime         @updatedAt
+
+  @@index([jobId, status])
+  @@index([profileId])
+}
+
+model GeneratedDocument {
+  id          String          @id @default(cuid())
+  workspaceId String
+  jobId       String
+  type        String
+  template    String?
+  tone        String?
+  status      String  @default("DRAFT")
+  title       String
+  plainText   String
+  html        String?
+  model       String?
+  job         Job             @relation(fields: [jobId], references: [id], onDelete: Cascade)
+  createdAt   DateTime        @default(now())
+  updatedAt   DateTime        @updatedAt
+
+  @@index([workspaceId, createdAt])
+  @@index([jobId, type])
+}

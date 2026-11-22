@@ -1,27 +1,45 @@
-# Job Requisition Analyzer and Resume Screening Engine
+<div align="center">
 
-> Natural language processing system that evaluates candidate resumes against technical job descriptions.
+<h1>Job Analyzer & ATS Resume Optimization Suite</h1>
 
-[![GitHub](https://img.shields.io/badge/GitHub-Repository-181717?style=flat-square&logo=github)](https://github.com/sohailahmed-bsrh/job-analyzer)
-[![Live Showcase](https://img.shields.io/badge/Live-Showcase-0A66C2?style=flat-square&logo=googlechrome)](https://sohail.devsil.com/projects.html)
-[![Author](https://img.shields.io/badge/Author-Sohail%20Ahmed-20BEFF?style=flat-square)](https://sohail.devsil.com)
+<img src="https://readme-typing-svg.herokuapp.com?font=Inter&weight=800&size=22&duration=3000&pause=1000&color=6366F1&center=true&vCenter=true&width=800&lines=Automated+Resume+Parsing+%26+ATS+Scoring;Semantic+Skill+Gap+Analysis;Tailored+Cover+Letter+Synthesis;Full-Stack+Node.js+%2B+React+Architecture" alt="Typing Header" />
 
----
+<p><strong>Applicant Tracking System (ATS) Analysis Engine and Document Generation Platform</strong></p>
 
-## Overview
+<p>
+  <a href="https://skillicons.dev"><img src="https://skillicons.dev/icons?i=nodejs,express,react,tailwind,js,sqlite,prisma,github&theme=dark" alt="Skills" /></a>
+</p>
 
-Recruiters and technical job applicants struggle to objectively quantify qualification alignment across unstructured text resumes and complex job specifications.
-
-This project provides an end-to-end, reproducible implementation engineered to solve this challenge through verified data transformations, reliable algorithms, and production-ready architecture.
+</div>
 
 ---
 
-## Key Features
+## Executive Summary
 
-- Text extraction from multi-page PDF documents using PyPDF2
-- Named entity and keyword extraction identifying required skills, toolchains, and qualifications
-- Cosine similarity calculation across TF-IDF representations to compute match percentages
-- Interactive full-stack interface with candidate workspace management
+Job Analyzer is a full-stack recruitment intelligence platform designed to parse candidate resumes, extract key technical competencies, compare qualification profiles against job descriptions, and generate quantitative ATS match scores. The platform includes an automated cover letter synthesis module and multi-template PDF compilation engine.
+
+---
+
+## Application Interface & Visual Analytics Gallery
+
+<table align="center">
+  <tr>
+    <td align="center"><b>Candidate Dashboard & Document Manager</b><br><sub>Centralized management of resumes, candidate profiles, and target roles.</sub></td>
+    <td align="center"><b>ATS Keyword Extraction & Match Analytics</b><br><sub>Quantitative matching evaluation highlighting qualification alignment.</sub></td>
+  </tr>
+  <tr>
+    <td align="center"><img src="SCREENSHOTS/1.png" alt="Dashboard Screen" width="460"/></td>
+    <td align="center"><img src="SCREENSHOTS/4.png" alt="Analysis Screen" width="460"/></td>
+  </tr>
+  <tr>
+    <td align="center"><b>Targeted Cover Letter Generation Studio</b><br><sub>Automated composition emphasizing relevant professional experience.</sub></td>
+    <td align="center"><b>Skill Gap Breakdown & Recommendations</b><br><sub>Detailed skill audit isolating missing technical competencies.</sub></td>
+  </tr>
+  <tr>
+    <td align="center"><img src="SCREENSHOTS/6.png" alt="Cover Letter Screen" width="460"/></td>
+    <td align="center"><img src="SCREENSHOTS/10.png" alt="Recommendations Screen" width="460"/></td>
+  </tr>
+</table>
 
 ---
 
@@ -29,75 +47,87 @@ This project provides an end-to-end, reproducible implementation engineered to s
 
 ```mermaid
 flowchart TD
-    Resume[Resume PDF Document] --> TextParse[PDF Text Parser]
-    JD[Job Description Text] --> Clean[Text Cleaning & Tokenization]
-    TextParse --> Clean
-    Clean --> TFIDF[TF-IDF Vector Space Encoding]
-    TFIDF --> Similarity[Cosine Similarity Calculation]
-    Similarity --> Match[Percentage Match Score]
-    Similarity --> Gap[Skill Gap Analysis & Recommendations]
-    Match --> UI[Web Dashboard Preview]
+    A[Resume File Upload: PDF / DOCX] --> B[Text Extraction & Normalization Engine]
+    C[Target Job Description Input] --> D[Job Requirement Parsing & Entity Extraction]
+    B --> E[Semantic Vector Alignment & Keyword Comparator]
+    D --> E
+    E --> F[Quantitative ATS Score Calculation]
+    E --> G[Skill Gap Breakdown & Missing Keyword Alert]
+    E --> H[Tailored Cover Letter Generation Engine]
+    H --> I[Headless Playwright PDF Export Service]
+```
+
+---
+
+## Core Engineering Features
+
+- **Document Parsing Engine**: Multi-format document parser extracting structured text, work history, and educational credentials from unstructured PDF and DOCX files.
+- **ATS Match Scoring Algorithm**: Evaluates candidate skill sets against job posting requirements using weighted keyword frequency, semantic context, and technical relevance.
+- **Automated Document Synthesis**: Formulates tailored, professional cover letters aligned to target role requirements.
+- **Headless PDF Compilation**: Playwright-driven PDF rendering service generating formatted, ATS-compliant documents.
+
+---
+
+## Repository Structure
+
+```
+job-analyzer/
+|-- client/
+|   |-- src/
+|   +-- package.json
+|-- server/
+|   |-- prisma/
+|   |-- src/
+|   |   |-- modules/
+|   |   |   |-- candidate/
+|   |   |   |-- documents/
+|   |   |   |-- generation/
+|   |   |   +-- jobs/
+|   |   +-- server.js
+|   +-- package.json
+|-- SCREENSHOTS/
+|   |-- 1.png
+|   |-- 4.png
+|   |-- 6.png
+|   +-- 10.png
+|-- package.json
++-- README.md
 ```
 
 ---
 
 ## Technology Stack
 
-| Technology | Version / Spec | Role in Architecture |
-| :--- | :--- | :--- |
-| **Python** | `3.10+` | NLP tokenization, feature extraction, and vector calculations |
-| **Scikit-learn** | `1.3+` | TF-IDF vectorizer and cosine similarity matrix |
-| **React** | `18.2+` | Modular workspace UI with route protection and editor |
-| **Streamlit** | `1.28+` | Standalone analytical demonstration tool |
+| Layer | Technologies |
+| :--- | :--- |
+| Frontend | React 18, Vite, Tailwind CSS, Lucide Icons |
+| Backend Server | Node.js, Express, RESTful APIs |
+| Database & ORM | SQLite, Prisma ORM |
+| Document Rendering | Playwright Headless Browser Service |
+| AI Integration | LLM API Clients for Text Processing |
 
 ---
 
-## Repository Structure
+## Installation & Setup
 
-```text
-job-analyzer/
-|-- Resume-Cover-Letter-Maker/
-|   |-- frontend/
-|   |   |-- src/
-|   |   `-- package.json
-|-- src/
-|-- .gitignore
-|-- requirements.txt
-`-- README.md
-```
-
----
-
-## Installation and Execution
-
-### Prerequisites
-- Python 3.10 or higher
-- Git version control
-- Virtual environment manager (`venv`)
-
-### Setup Instructions
-1. Clone the repository:
 ```bash
+# Clone the repository
 git clone https://github.com/sohailahmed-bsrh/job-analyzer.git
 cd job-analyzer
-```
 
-2. Configure environment and dependencies:
-```bash
-python -m venv venv
-source venv/bin/activate  # On Windows: venv\Scripts\activate
-pip install -r requirements.txt
+# Install root, client, and server dependencies
+npm run install:all
+
+# Run database migrations
+npm run prisma:migrate
+
+# Start application
+npm run dev
 ```
 
 ---
 
-## Interface and Verification
-The system produces verifiable execution logs, prediction matrices, or interactive browser interfaces depending on the target mode. Verify operation by executing the commands specified above or inspecting the demonstration notebooks.
+## Author & License
 
----
-
-## Author and Contact
-Developed by **Sohail Ahmed** — Full Stack AI Engineer & Machine Learning Specialist.
-- **Portfolio:** [sohail.devsil.com](https://sohail.devsil.com)
-- **GitHub:** [@sohailahmed-bsrh](https://github.com/sohailahmed-bsrh)
-- **Email:** [sohail.bsrh@gmail.com](mailto:sohail.bsrh@gmail.com)
+- **Author**: Sohail Ahmed ([Portfolio](https://sohail.devsil.com) | [GitHub](https://github.com/sohailahmed-bsrh))
+- **License**: Distributed under the MIT License.
